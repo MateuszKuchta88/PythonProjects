@@ -351,13 +351,23 @@ class QuizApp:
         # Opcje odpowiedzi
         self.answer_var = tk.StringVar()
         self.buttons_frame = tk.Frame(self.root)
-        self.buttons_frame.pack(pady=20)
+        self.buttons_frame.pack(pady=20, fill='x', expand=True)
+
         self.answer_buttons = {}
         for option in ["A", "B", "C", "D"]:
-            btn = tk.Radiobutton(self.buttons_frame, text="", variable=self.answer_var, value=option,
-                                 font=("Arial", 14), indicatoron=0, width=10, pady=10,
-                                 command=self.answer_selected)
-            btn.pack(side="left", padx=10)
+            btn = tk.Radiobutton(
+                self.buttons_frame,
+                text="",
+                variable=self.answer_var,
+                value=option,
+                font=("Arial", 14),
+                indicatoron=0,
+                pady=10,
+                command=self.answer_selected,
+                wraplength=150,  # wrap text after 150 pixels if too long
+                justify='center'
+            )
+            btn.pack(side="left", padx=10, fill='x', expand=True)
             self.answer_buttons[option] = btn
 
         # Pasek postępu czasu
